@@ -1,14 +1,14 @@
-#ifndef _CARD_
-#define _CARD_
-#define _GAME_
+#ifndef cardhead
+#define cardhead
+
 
 struct card_t
 {
-char name [10];
+char *name;
 int mana;
 int damage;
 int hp;
 };
 
-int attack(struct card_t*attacker,struct cart_t*defender);
+int attack(struct card_t *attacker,struct cart_t *defender);
 #endif
