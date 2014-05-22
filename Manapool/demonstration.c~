@@ -10,7 +10,7 @@ struct card_t card_to_push = {"Card1", 6, 8, 5};
 
 manapool_create(&pool);
 printf("mana: %d\n", pool.mana_now);
-pool.max = 30;
+
 mana_push(&pool, 75);
 printf("mana: %d\n", pool.mana_now);
 
