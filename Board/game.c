@@ -28,7 +28,7 @@ int main() {
 					if( can_put_card(board.pl[side].hand.card[card], board.pl[side].pool) ) {
 						if( can_play_card(board, side) ) {
 							use_mana(&board.pl[side].pool, board.pl[side].hand.card[card].mana_cost);
-							play_card(board, play_card_from_hand(&board.pl[side], card), side);
+							play_card(&board, play_card_from_hand(&board.pl[side], card), side);
 							system("clear");
 							print_board(board);
 						} else {
@@ -46,6 +46,12 @@ int main() {
 				}
 			}
 		} while(card != -1);
+		if(board.pl[0].turn == board.pl[1].turn) {
+		if(side && AI) printf("\n");		
+			
+			turn_end(&board);
+		}
+	side = !side;
 	
 	}
 	print_winner(board);
