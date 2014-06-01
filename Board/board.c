@@ -77,45 +77,7 @@ int play_card(struct board_t *board, struct card_t card, int side) {
 	return 0;
 }
 
-void on_turn(struct board_t *board, int AI, int side) {
-	int card;
-	int FULL = 0; //FULL flags the AI bot when the board has no empty slots
-	char ch;
-		do {
-			system("clear");
-			if(!(side && AI)) printf("%s is on turn!\n", board->pl[side].name);
-			print_board(*board);
-			printf("%s is on turn (-1 to end the turn): ", board->pl[side].name);
-			if(side && AI) {
-				card = AI_bot(board->pl[1], FULL);
-			} else {
-				scanf("%d", &card);
-			}
-			if( card != -1) {			
-				if( card > 0 && card <= board->pl[side].hand.top ) {
-					card--;
-					if( can_put_card(board->pl[side].hand.card[card], board->pl[side].pool) ) {
-						if( can_play_card(*board, side) ) {
-							use_mana(&board->pl[side].pool, board->pl[side].hand.card[card].mana_cost);
-							play_card(board, play_card_from_hand(&board->pl[side], card), side);
-							system("clear");
-							print_board(*board);
-						} else {
-							FULL = 1;
-							printf("There no free slots on the board!\n");
-							wait_for_key(AI, side);
-						} 
-					} else {
-						printf("Not enough mana!\n");
-						wait_for_key(AI, side);
-					}
-				} else {
-					printf("Invalid card!\n");
-					wait_for_key(AI, side);
-				}
-			}
-		} while(card != -1);
-}
+
 
 void turn_end(struct board_t *board) {
 	int corr;
@@ -128,16 +90,6 @@ void turn_end(struct board_t *board) {
 			board->pl[0].hp -= board->slot[1][corr].atk;
 		}
 	}
-}
-
-void improved_turn_end(struct board_t *board, int AI, int *side) {
-	if(board->pl[0].turn == board->pl[1].turn) {
-		if(*side && AI) printf("\n");		
-			printf("Press enter to continue...\n");
-			press_key();
-			turn_end(board);
-		}
-	*side = !(*side);
 }
 
 int winner(struct board_t board) {
