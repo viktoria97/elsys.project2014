@@ -4,19 +4,6 @@
 #include "board.h"
 #include "board.h"
 
-void press_key() {
-	char ch;
-	ch = getchar();
-	ch = getchar();
-}
-
-void wait_for_key(int AI, int side) {
-	if(!AI) {
-		press_key();
-	} else if(!side) {
-		press_key();
-	}	
-}
 
 void init_board(struct board_t *board) {
 	int corr;
@@ -67,14 +54,14 @@ void print_board(struct board_t board) {
 	print_player(board.pl[1]);	
 }
 
-int is_slot_empty(struct board_t board, int side, int corr) {
+int open_slot(struct board_t board, int side, int corr) {
 	return board.slot[side][corr].hp > 0 ? 0 : 1;
 }
 
 int can_play_card(struct board_t board, int side) {
 	int corr = 0;
 	for(corr = 0; corr < 5; corr++) {
-		if( is_slot_empty(board, side, corr) ) return 1;
+		if( open_slot(board, side, corr) ) return 1;
 	}
 	return 0;
 }
@@ -82,7 +69,7 @@ int can_play_card(struct board_t board, int side) {
 int play_card(struct board_t *board, struct card_t card, int side) {
 	int corr;
 	for(corr = 0; corr < 5; corr++) {
-		if( is_slot_empty(*board, side, corr) ) {
+		if( open_slot(*board, side, corr) ) {
 			board->slot[side][corr] = card;
 			return 1;
 		}
