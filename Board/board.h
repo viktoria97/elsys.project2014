@@ -25,11 +25,7 @@ int can_play_card(struct board_t board, int side);
 
 int play_card(struct board_t *board, struct card_t card, int side);
 
-void on_turn(struct board_t *board, int AI, int side);
-
 void turn_end(struct board_t *board);
-
-void improved_turn_end(struct board_t *board, int AI, int *side);
 
 int winner(struct board_t board);
 
