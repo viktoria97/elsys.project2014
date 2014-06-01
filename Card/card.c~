@@ -1,5 +1,5 @@
-#include "card.h"
 #include <stdio.h>
+#include "card.h"
 
 void print_card(struct card_t card) {
 printf("%d/%d(%d)\n", card.damage, card.hp, card.mana);

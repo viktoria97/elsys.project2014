@@ -36,7 +36,7 @@ int look_card(struct deck_t player_deck, struct card_t *card_to_look)
         *card_to_look = player_deck.card[--player_deck.top];
         return 1; 
 } 
-else  printf ("Deck is empty!");
+else  printf ("Deck is empty!”);
 }
 
 

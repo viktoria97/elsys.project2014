@@ -16,7 +16,7 @@ struct player_t {
 
 void print_player(struct player_t player);
 void change_hp(struct player_t *player, int hp);
-int throw_card(struct player_t *player, int card, struct card_t *return_card); 
+int discard_card(struct player_t *player, int card, struct card_t *return_card); 
 struct card_t play_card_from_hand(struct player_t *player, int card);
 void turn_begin(struct player_t *player);
 
